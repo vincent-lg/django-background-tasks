@@ -84,6 +84,12 @@ class Command(BaseCommand):
 
         autodiscover()
 
+        # Checks for compatibility reasons, sometimes options are str no matter what
+        if isinstance(duration, str):
+            duration = int(duration)
+        if isinstance(sleep, str):
+            sleep = float(sleep)
+
         start_time = time.time()
 
         while (duration <= 0) or (time.time() - start_time) <= duration:
